@@ -6,14 +6,13 @@
 
 Na solução, foquei na otimização, mantendo um número menor de execuções.
 
-Para atingir este objetivo, destaco:
+Para atingir o objetivo, os pontos abaixos foram bem importantes:
 
-- A remoção dos customers success indisponíveis e ordenação pelo score.
-- Ordenação dos clientes pelo score.
-- Manter o score mínimo atual para ser utilizado durante as interações, com isso só executo
-  restante quando for maior que o atual
+- Remoção dos customers success indisponíveis.
+- Ordenação dos customers success e clientes pelo score.
+- Manter o score mínimo atual para ser utilizado durante as interações, evitando executar o restante quando for igual ao atual
 
-Criei algumas regras de validação para contemplar as premissas marcadas abaixo e seus respectivos testes.
+Criei também algumas regras de validação para contemplar as premissas marcadas abaixo e seus respectivos cenários.
 
 ## Premissas contempladas
 
