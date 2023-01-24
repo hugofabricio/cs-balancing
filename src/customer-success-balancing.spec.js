@@ -39,11 +39,7 @@ test("Scenario 3", () => {
 
   expect(customerSuccessBalancing(css, customers, csAway)).toEqual(998);
 
-  const now = new Date().getTime() - testStartTime;
-
-  console.log(`Current: ${now}ms`);
-
-  if (now > testTimeoutInMs) {
+  if (new Date().getTime() - testStartTime > testTimeoutInMs) {
     throw new Error(`Test took longer than ${testTimeoutInMs}ms! `);
   }
 });
@@ -78,4 +74,46 @@ test("Scenario 7", () => {
   const csAway = [4, 5, 6];
 
   expect(customerSuccessBalancing(css, customers, csAway)).toEqual(3);
+});
+
+test("Scenario 8 - Validate max customers success accepted", () => {
+  const css = mapEntities(arraySeq(1000, 1));
+  const customers = buildSizeEntities(10000, 998);
+  const csAway = [4, 5, 6];
+
+  expect(customerSuccessBalancing(css, customers, csAway)).toEqual({
+    customerSuccess: "Total de CS acima do permitido. (Max 999)",
+  });
+});
+
+test("Scenario 9 - Validate max customers accepted", () => {
+  const css = mapEntities(arraySeq(238, 1));
+  const customers = buildSizeEntities(1000000, 643);
+  const csAway = [4, 5, 6];
+
+  expect(customerSuccessBalancing(css, customers, csAway)).toEqual({
+    customers: "Total de clientes acima do permitido. (Max 999999)",
+  });
+});
+
+test("Scenario 10 - Validate max customers success away accepted", () => {
+  const css = mapEntities(arraySeq(238, 1));
+  const customers = buildSizeEntities(100000, 643);
+  const csAway = arraySeq(300, 1);
+
+  expect(customerSuccessBalancing(css, customers, csAway)).toEqual({
+    customerSuccessAway: "Número de abstenções acima do permitido. (Max 119)",
+  });
+});
+
+test("Scenario 11 - Validate all rules max accepted", () => {
+  const css = mapEntities(arraySeq(1001, 1));
+  const customers = buildSizeEntities(1100001, 122);
+  const csAway = arraySeq(600, 1);
+
+  expect(customerSuccessBalancing(css, customers, csAway)).toEqual({
+    customerSuccess: "Total de CS acima do permitido. (Max 999)",
+    customers: "Total de clientes acima do permitido. (Max 999999)",
+    customerSuccessAway: "Número de abstenções acima do permitido. (Max 500)",
+  });
 });

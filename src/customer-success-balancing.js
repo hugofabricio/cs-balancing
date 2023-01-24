@@ -1,4 +1,4 @@
-// const customerSuccessBalancingRules = require("./customer-success-balancing-rules");
+const customerSuccessBalancingRules = require("./customer-success-balancing-rules");
 
 /**
  * Returns the id of the CustomerSuccess with the most customers
@@ -11,9 +11,19 @@ function customerSuccessBalancing(
   customers,
   customerSuccessAway
 ) {
-  const filteredCustomerSuccess = customerSuccess
+  const errors = customerSuccessBalancingRules.validate({
+    customerSuccess,
+    customers,
+    customerSuccessAway,
+  });
+
+  if (Object.keys(errors).length) {
+    return errors;
+  }
+
+  const filteredCustomersSuccess = customerSuccess
     .filter((cs) => !customerSuccessAway.includes(cs.id))
-    .sort((cs1, cs2) => cs1.score - cs2.score);
+    .sort((a, b) => a.score - b.score);
 
   let minScore = 0;
   let maxCalls = 0;
@@ -23,7 +33,7 @@ function customerSuccessBalancing(
     .forEach((customer) => {
       if (customer.score === minScore) return;
 
-      const cs = filteredCustomerSuccess.find(
+      const cs = filteredCustomersSuccess.find(
         (cs) => cs.score >= customer.score
       );
 
