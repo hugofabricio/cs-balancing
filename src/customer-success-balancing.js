@@ -11,7 +11,9 @@ function customerSuccessBalancing(
   customers,
   customerSuccessAway
 ) {
-  customerSuccess = customerSuccess.sort((cs1, cs2) => cs1.score - cs2.score);
+  const filteredCustomerSuccess = customerSuccess
+    .filter((cs) => !customerSuccessAway.includes(cs.id))
+    .sort((cs1, cs2) => cs1.score - cs2.score);
 
   let minScore = 0;
   let maxCalls = 0;
@@ -20,9 +22,8 @@ function customerSuccessBalancing(
     .sort((c1, c2) => c1.score - c2.score)
     .forEach((customer) => {
       if (customer.score >= minScore) {
-        const cs = customerSuccess.find(
-          (cs) =>
-            !customerSuccessAway.includes(cs.id) && cs.score >= customer.score
+        const cs = filteredCustomerSuccess.find(
+          (cs) => cs.score >= customer.score
         );
 
         if (cs) {
