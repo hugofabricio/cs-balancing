@@ -17,7 +17,7 @@ function customerSuccessBalancing(
     customerSuccessAway,
   });
 
-  if (Object.keys(errors).length) {
+  if (customerSuccessBalancingRules.has(errors)) {
     return errors;
   }
 
@@ -29,7 +29,7 @@ function customerSuccessBalancing(
   let currentMaxCalls = 0;
 
   customers
-    .sort((c1, c2) => c1.score - c2.score)
+    .sort((a, b) => a.score - b.score)
     .forEach((customer) => {
       if (customer.score === currentMinScore) return;
 
