@@ -25,13 +25,13 @@ function customerSuccessBalancing(
     .filter((cs) => !customerSuccessAway.includes(cs.id))
     .sort((a, b) => a.score - b.score);
 
-  let minScore = 0;
-  let maxCalls = 0;
+  let currentMinScore = 0;
+  let currentMaxCalls = 0;
 
   customers
     .sort((c1, c2) => c1.score - c2.score)
     .forEach((customer) => {
-      if (customer.score === minScore) return;
+      if (customer.score === currentMinScore) return;
 
       const cs = filteredCustomersSuccess.find(
         (cs) => cs.score >= customer.score
@@ -39,17 +39,17 @@ function customerSuccessBalancing(
 
       if (!cs) return;
 
-      cs.calls = cs.calls || 0;
+      cs.calls = (cs.calls || 0) + 1;
 
-      if (++cs.calls > maxCalls) {
-        maxCalls = cs.calls;
+      if (cs.calls > currentMaxCalls) {
+        currentMaxCalls = cs.calls;
       }
 
-      minScore = cs.score;
+      currentMinScore = cs.score;
     });
 
   const customerSuccessWithMoreCalls = customerSuccess.filter(
-    (c) => c.calls === maxCalls
+    (c) => c.calls === currentMaxCalls
   );
 
   const hasTiedCustomersSuccess = customerSuccessWithMoreCalls.length > 1;
