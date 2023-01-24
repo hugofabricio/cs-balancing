@@ -2,9 +2,18 @@
 
 ![Tests](https://github.com/hugofabricio/cs-balancing/actions/workflows/build.yml/badge.svg)
 
-Sistema de balanceamento entre clientes e Customer Success
+## Solução
 
-# Detalhes
+Na solução, foquei na otimização, mantendo um número menor de execuções.
+
+Para atingir este objetivo, destaco:
+
+- A remoção dos customers success indisponíveis e ordenação pelo score.
+- Ordenação dos clientes pelo score.
+- Manter o score mínimo atual para ser utilizado durante as interações, com isso só executo
+  restante quando for maior que o atual
+
+Criei algumas regras de validação para contemplar as premissas marcadas abaixo e seus respectivos testes.
 
 ## Premissas contempladas
 
