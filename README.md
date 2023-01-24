@@ -1,5 +1,7 @@
 # Customer Success Balancing
 
+![Tests](https://github.com/hugofabricio/cs-balancing/actions/workflows/build.yml/badge.svg)
+
 Sistema de balanceamento entre clientes e Customer Success
 
 ## Premissas
