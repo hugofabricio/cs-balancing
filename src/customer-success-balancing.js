@@ -21,21 +21,21 @@ function customerSuccessBalancing(
   customers
     .sort((c1, c2) => c1.score - c2.score)
     .forEach((customer) => {
-      if (customer.score >= minScore) {
-        const cs = filteredCustomerSuccess.find(
-          (cs) => cs.score >= customer.score
-        );
+      if (customer.score === minScore) return;
 
-        if (cs) {
-          cs.calls = cs.calls || 0;
+      const cs = filteredCustomerSuccess.find(
+        (cs) => cs.score >= customer.score
+      );
 
-          if (++cs.calls > maxCalls) {
-            maxCalls = cs.calls;
-          }
+      if (!cs) return;
 
-          minScore = cs.score;
-        }
+      cs.calls = cs.calls || 0;
+
+      if (++cs.calls > maxCalls) {
+        maxCalls = cs.calls;
       }
+
+      minScore = cs.score;
     });
 
   const customerSuccessWithMoreCalls = customerSuccess.filter(
