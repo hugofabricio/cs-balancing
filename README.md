@@ -4,7 +4,7 @@
 
 Sistema de balanceamento entre clientes e Customer Success
 
-## Premissas
+## Premissas contempladas
 
 - [x] Todos os CSs têm níveis diferentes
 - [x] Não há limite de clientes por CS
