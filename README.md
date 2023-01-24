@@ -4,6 +4,8 @@
 
 Sistema de balanceamento entre clientes e Customer Success
 
+# Detalhes
+
 ## Premissas contempladas
 
 - [x] Todos os CSs têm níveis diferentes
@@ -14,7 +16,7 @@ Sistema de balanceamento entre clientes e Customer Success
 - [x] 0 < m < 1.000.000
 - [ ] 0 < id do cs < 1.000
 - [ ] 0 < id do cliente < 1.000.000
-- [ ] 0 < nível do cs < 10.000
+- [x] 0 < nível do cs < 10.000
 - [ ] 0 < tamanho do cliente < 100.000
 - [x] Valor máximo de t = n/2 arredondado para baixo
 
