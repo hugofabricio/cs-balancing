@@ -41,10 +41,10 @@ test("Scenario 3", () => {
 
   const now = new Date().getTime() - testStartTime;
 
+  console.log(`Current: ${now}ms`);
+
   if (now > testTimeoutInMs) {
-    throw new Error(
-      `Test took longer than ${testTimeoutInMs}ms! Current: ${now}ms`
-    );
+    throw new Error(`Test took longer than ${testTimeoutInMs}ms! `);
   }
 });
 
